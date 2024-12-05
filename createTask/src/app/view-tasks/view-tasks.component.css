@@ -1,0 +1,129 @@
+/* Container for the entire task list section */
+.container {
+  padding: 10px;
+  width: fit-content;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #f1f1f1;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background-color: #f8f9fa;
+}
+
+/* Flexbox for form inputs (filters) */
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.d-flex.flex-column {
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 10px;
+}
+
+.d-flex > label {
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+/* Make form inputs wrap for smaller screens */
+@media (max-width: 768px) {
+  .d-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-control {
+    max-width: 100%;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* Table styling for smaller screens */
+@media (max-width: 600px) {
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 6px;
+  }
+
+  td select {
+    width: 80%;
+    font-size: 12px;
+  }
+  
+  /* Adjust layout of table columns */
+  td {
+    display: block;
+    padding: 10px 5px;
+  }
+
+  td:nth-child(even) {
+    display: none;
+  }
+
+  td:nth-child(odd) {
+    display: block;
+  }
+
+  th {
+    display: none;
+  }
+
+  /* Change button size */
+  .btn {
+    font-size: 14px;
+  }
+}
+
+/* Adjust layout for very small screens */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 12px;
+  }
+
+  table {
+    font-size: 10px;
+  }
+}
+
+  

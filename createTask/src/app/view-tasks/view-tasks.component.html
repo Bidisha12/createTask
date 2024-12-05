@@ -1,0 +1,68 @@
+<div class="container">
+    <h4>Tasks Lists</h4>
+    <table class="table table-striped" *ngIf="taskList.length > 0">
+      <thead>
+        <tr>
+          <th>Task Name</th>
+          <th>Description</th>
+          <th>
+            <div class="flex">
+                <label for="assignee">Assignee</label>
+                <select id="assignee" class="form-control" [(ngModel)]="selectedAssignee" (change)="filterAssignee()">
+                  <option value="">Filter Assignee</option>
+                  <option *ngFor="let assignee of assignees" [value]="assignee">{{ assignee }}</option>
+                </select>
+            </div>
+          </th>
+          <th>
+            <div class="flex">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" class="form-control" [(ngModel)]="selectedStartDate" (change)="filterDate()"/>
+            </div>
+          </th>
+          <th>
+            <div class="flex">
+            <label for="startDate">Due Date</label>
+            <input type="date" id="dueDate" class="form-control" [(ngModel)]="selectedDueDate" (change)="filterDate()"/>
+            </div>
+          </th>
+          <th>
+            <div class="flex">
+            <label for="status">Status</label>
+            <select id="status" class="form-control" [(ngModel)]="selectedStatus" (change)="filterStatus()">
+                <option value="">Filter Status</option>
+                <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+            </select>
+            </div>
+          </th>
+          <th><button class="btn btn-secondary btn-sm" (click)="resetFilter()">Reset</button></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredTasks.length > 0">
+        <tr *ngFor="let task of filteredTasks">
+          <td>{{ task.taskName }}</td>
+          <td>{{ task.description }}</td>
+          <td style="display: flex;">
+            {{ task.assignee }}
+            <select class="form-control" style="margin-left: 1rem;" (change)="onChangeAssignee(task, $event)">
+                <option value="">Change assignee</option>
+                <option *ngFor="let assignee of assignees" [value]="assignee" [disabled]="assignee == task.assignee">{{ assignee }}</option>
+            </select>
+            </td>
+          <td>{{ task.startDate | date }}</td>
+          <td>{{ task.dueDate | date }}</td>
+          <td style="display: flex;">
+            {{ task.status }}
+            <select class="form-control" style="margin-left: 1rem;" (change)="onChangeStatus(task, $event)" >
+                <option value="">Change Status</option>
+                <option *ngFor="let status of statusOptions" [value]="status" [disabled]="status == task.status">{{ status }}</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="success" *ngIf="isStatusChanged">Status of task changed successFully!</p>
+    <p *ngIf="taskList.length == 0">No tasks added are added in tasklist, Please create task.</p>
+    <p *ngIf="taskList.length > 0 && filteredTasks.length === 0">No tasks match the selected filters.</p>
+  </div>
+  

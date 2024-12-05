@@ -1,0 +1,67 @@
+<div class="container">
+    <h4 class="header">Create a New Task</h4>
+  
+    <form [formGroup]="createTaskForm" (ngSubmit)="onSubmit()">
+    <div style="display: flex;justify-content: space-between;">
+        <div class="col-5">
+            <div class="form-group">
+                <label for="taskName">Task Name</label>
+                <input type="text" id="taskName" class="form-control" formControlName="taskName">
+                <div *ngIf="createTaskForm.get('taskName')?.invalid && createTaskForm.get('taskName')?.touched" class="text-danger">
+                  Task name is required.
+                </div>
+              </div>
+          
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" formControlName="description"></textarea>
+                <div *ngIf="createTaskForm.get('description')?.invalid && createTaskForm.get('description')?.touched" class="text-danger">
+                  Description is required.
+                </div>
+              </div>
+          
+              <div class="form-group">
+                <label for="assignee">Assignee</label>
+                <select id="assignee" class="form-control" formControlName="assignee">
+                  <option value="" disabled>Select Assignee</option>
+                  <option *ngFor="let employee of employees" [value]="employee">{{ employee }}</option>
+                </select>
+                <div *ngIf="createTaskForm.get('assignee')?.invalid && createTaskForm.get('assignee')?.touched" class="text-danger">
+                  Assignee is required.
+                </div>
+              </div>
+        </div>
+        <div class="col-5">
+            <div class="form-group">
+                <label for="dueDate">Start Date</label>
+                <input type="date" id="dueDate" class="form-control" formControlName="startDate">
+                <div *ngIf="createTaskForm.get('startDate')?.invalid && createTaskForm.get('startDate')?.touched" class="text-danger">
+                  Start date is required.
+                </div>
+              </div>
+          
+              <div class="form-group">
+                <label for="dueDate">Due Date</label>
+                <input type="date" id="dueDate" class="form-control" formControlName="dueDate">
+                <div *ngIf="createTaskForm.get('dueDate')?.invalid && createTaskForm.get('dueDate')?.touched" class="text-danger">
+                  Due date is required.
+                </div>
+              </div>
+          
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" class="form-control" formControlName="status">
+                  <option value="" disabled>Select Status</option>
+                  <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+                </select>
+                <div *ngIf="createTaskForm.get('status')?.invalid && createTaskForm.get('status')?.touched" class="text-danger">
+                  Status is required.
+                </div>
+              </div>
+        </div>
+    </div>
+      <button type="submit" class="btn btn-primary" [disabled]="createTaskForm.invalid">Submit</button>
+    </form>
+    <p class="success" *ngIf="isTaskAdded">Task created successFully! Please click on "View Task" to see the added task.</p>
+  </div>
+  
