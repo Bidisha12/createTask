@@ -1,2 +1,1 @@
-This project is about Task management system of Employees, Employee can create new task and view the task, and update task assignee and task status and filter the task based on 
-status, start date - end date, assignee.
+This project is about Task management system of Employees, Employee can create new task and view the task, and update the assignee and task status. filter is also there based on status of the task, start date - end date, assignee.
