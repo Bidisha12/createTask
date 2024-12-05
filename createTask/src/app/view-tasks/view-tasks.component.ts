@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ViewTasksComponent implements OnInit {
   taskList: Task[] = [];
   filteredTasks: Task[] = [];
-  filterForm!: FormGroup;  // Form for filtering tasks
   statusOptions: string[] = ['To Start', 'In Progress', 'Completed', 'Due'];  // Status options
   assignees: string[] = ['E1', 'E2', 'E3', 'E4', 'E5']; 
   taskStatus: string = '';
@@ -25,15 +24,7 @@ export class ViewTasksComponent implements OnInit {
      // subscribe to the observable to get the updated tasklist
      this.taskService.taskList$.subscribe(tasks => {  
       this.taskList = tasks;
-      console.log(this.taskList);
     })
-
-    this.filterForm = this.fb.group({
-      status: [''],
-      assignee: [''],
-      startDate: [''],
-      endDate: ['']
-    });
     this.filteredTasks = [...this.taskList]; // Initialize filteredTasks with the full task list
   }
 
@@ -43,8 +34,8 @@ export class ViewTasksComponent implements OnInit {
 
   onChangeStatus(task : any, event : any) {
     task.status = event.target.value;
-    this.isStatusChanged = true;
-    setTimeout(()=> {
+    this.isStatusChanged = true; // show the changed status message
+    setTimeout(()=> { // hide the changed status message after 3 sec
       this.isStatusChanged = false;
     }, 3000)
     
